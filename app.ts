@@ -7,6 +7,7 @@ import  expressWinston  from 'express-winston';
 import logger from './lib/logger';
 import publicPaths from './config/public-paths';
 import { extractJwt } from './lib/utils/jwt-utils';
+import * as routes from './lib/routes';
 
 const initialize = () => {
   app.use(cors());
@@ -26,6 +27,10 @@ const initialize = () => {
   app.patch(publicPaths('patch'), extractJwt);
   app.post(publicPaths('post'), extractJwt);
   app.delete(publicPaths('delete'), extractJwt);
+
+  for (const key of Object.keys(routes)) {
+    app.use('/api', routes[key as keyof typeof routes]);
+  }
 
   app.use(function (_req, _res, next) {
     const err = { message: 'Not Found', status: 404, stack: {}, };
