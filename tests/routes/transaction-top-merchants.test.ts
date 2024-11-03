@@ -124,6 +124,20 @@ describe('POST /api/transactions/top-merchants', () => {
             amount: 1600,
             merchant: 'Merchant 3',
             userId: '1'
+          }),
+          Transaction.create({
+            id: 15,
+            date: new Date(),
+            amount: 200,
+            merchant: 'Merchant 3',
+            userId: '1'
+          }),
+          Transaction.create({
+            id: 16,
+            date: new Date(),
+            amount: 200,
+            merchant: 'Merchant 9',
+            userId: '1'
           })
         ]);
       });
@@ -152,18 +166,18 @@ describe('POST /api/transactions/top-merchants', () => {
       .then((response) => {
         response.body.should.be.an.Array();
         response.body.length.should.be.lessThanOrEqual(10);
-        response.body[0].should.have.properties(['merchant', 'totalAmount']);
+        response.body[0].should.have.properties(['merchant', 'transactionCount']);
         response.body.should.containDeep([
-          { merchant: 'Merchant 8', totalAmount: '2500' },
-          { merchant: 'Merchant 3', totalAmount: '2300' },
-          { merchant: 'Merchant 12', totalAmount: '1400' },
-          { merchant: 'Merchant 11', totalAmount: '1300' },
-          { merchant: 'Merchant 10', totalAmount: '1200' },
-          { merchant: 'Merchant 9', totalAmount: '1100' },
-          { merchant: 'Merchant 7', totalAmount: '900' },
-          { merchant: 'Merchant 6', totalAmount: '800' },
-          { merchant: 'Merchant 2', totalAmount: '600' },
-          { merchant: 'Merchant 1', totalAmount: '500' }
+          { merchant: 'Merchant 3', transactionCount: '3' },
+          { merchant: 'Merchant 8', transactionCount: '2' },
+          { merchant: 'Merchant 9', transactionCount: '2' },
+          { merchant: 'Merchant 2', transactionCount: '1' },
+          { merchant: 'Merchant 11', transactionCount: '1' },
+          { merchant: 'Merchant 6', transactionCount: '1' },
+          { merchant: 'Merchant 4', transactionCount: '1' },
+          { merchant: 'Merchant 12', transactionCount: '1' },
+          { merchant: 'Merchant 7', transactionCount: '1' },
+          { merchant: 'Merchant 1', transactionCount: '1' }
         ]);
       });
   });

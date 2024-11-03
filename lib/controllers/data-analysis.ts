@@ -8,10 +8,10 @@ export async function getTopMerchants(_req: Request, res: Response) {
     const topMerchants = await Transaction.findAll({
       attributes:[
         'merchant',
-        [sequelize.fn('SUM', sequelize.col('amount')), 'totalAmount'],
+        [sequelize.fn('COUNT', sequelize.col('id')), 'transactionCount'],
       ],
       group: ['merchant'],
-      order: [[sequelize.fn('SUM', sequelize.col('amount')), 'DESC']],
+      order: [[sequelize.fn('COUNT', sequelize.col('id')), 'DESC']],
       limit: 10,
     });
 
