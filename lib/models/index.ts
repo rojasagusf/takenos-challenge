@@ -48,7 +48,7 @@ async function initializeDb() {
     logger.info('Database connection established');
 
     if (['testing', 'development'].includes(NODE_ENV)) {
-      await sequelize.sync();
+      await sequelize.sync({ alter: true });
       logger.info('Database synchronized');
     }
   } catch (error) {

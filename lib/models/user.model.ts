@@ -9,10 +9,11 @@ import Transaction from './transaction.model';
 
 export default class User extends Model {
   @Column({
-    type: DataType.STRING(100),
+    type: DataType.INTEGER,
     primaryKey: true,
+    autoIncrement: true,
   })
-    id!: string;
+    id!: number;
 
   @Column({
     type: DataType.STRING,
