@@ -144,7 +144,10 @@ describe('POST /api/transactions/top-merchants', () => {
   });
 
   after(() => {
-    return Transaction.destroy({where: {}});
+    return User.destroy({where: {}})
+      .then(() => {
+        return Transaction.destroy({where: {}});
+      });
   });
 
   it('Should fail withouth token', () => {

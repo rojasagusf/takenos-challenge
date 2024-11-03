@@ -3,7 +3,9 @@ import Transaction from '../models/transaction.model';
 import { sequelize } from '../models';
 import logger from '../logger';
 import countTransactions from '../utils/transaction-helper';
+import { Op } from 'sequelize';
 const VALID_QUERY_PERIODS = ['day', 'week', 'month'];
+const FRAUD_AMOUNT_THRESHOLD = 100000;
 
 export async function getTopMerchants(_req: Request, res: Response) {
   try {
@@ -69,7 +71,29 @@ export async function getTotalVolume(req: Request, res: Response) {
       });
     }
   } catch(error) {
-    logger.error(`getTopMerchants error: ${(error as Error).message}`);
+    logger.error(`getTotalVolume error: ${(error as Error).message}`);
+    return res.status(500).json({
+      code: 'internal_error',
+      message: 'Internal error'
+    });
+  }
+}
+
+export async function getFraudulentTransactions(_req: Request, res: Response) {
+  try {
+    const highValueTransactions = await Transaction.findAll({
+      where: {
+        amount: {
+          [Op.gt]: FRAUD_AMOUNT_THRESHOLD
+        }
+      }
+    });
+
+    return res.status(200).json({
+      highValueTransactions,
+    });
+  } catch (error) {
+    logger.error(`getFraudulentTransactions error: ${(error as Error).message}`);
     return res.status(500).json({
       code: 'internal_error',
       message: 'Internal error'
