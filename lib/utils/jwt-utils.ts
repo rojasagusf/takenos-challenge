@@ -39,7 +39,7 @@ export function extractJwt(req: Request, res: Response, next: NextFunction) {
           message: 'Unauthorized'
         });
       }
-      req.user = decoded;;
+      req.user = decoded;
       return next();
     });
 }
