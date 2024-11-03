@@ -150,6 +150,20 @@ describe('POST /api/transactions/total-volume', () => {
       });
   });
 
+  it('Should fail with invalid period', () => {
+    return request(application)
+      .get('/api/transactions/total-volume')
+      .query({
+        period: 'year'
+      })
+      .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer token_user_0001')
+      .expect(400)
+      .then((response) => {
+        response.body.code.should.be.equal('invalid_fields');
+      });
+  });
+
   it('Should get total volume for the last day', () => {
     return request(application)
       .get('/api/transactions/total-volume')
