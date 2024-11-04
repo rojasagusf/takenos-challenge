@@ -11,6 +11,25 @@ then, execute a build command:
 npm build
 ```
 
+Create a new file .env and configure:
+```
+NODE_ENV
+SERVER_PORT
+JWT_SECRET
+JWT_TOKEN_EXPIRATION
+JWT_ISSUER
+POSTGRESQL_DB
+POSTGRESQL_USER
+POSTGRESQL_PASSWORD
+POSTGRESQL_PORT
+POSTGRESQL_HOST
+SMTP_MAIL_HOST
+SMTP_MAIL_USER
+SMTP_MAIL_PASS
+SMTP_MAIL_SECURE
+MAIL_FROM
+```
+
 - Run with typescript
 ```
 npm start
