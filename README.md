@@ -1,4 +1,4 @@
-# Takenos Challenge v1.0.1
+# Takenos Challenge v1.0.2
 
 This is an API whose functionality is to insert information through a CSV file. From this information, certain data analyses are derived, which can be consulted at any time.
 
