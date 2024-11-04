@@ -35,20 +35,26 @@ then, this return a bearer token to access in the other endpoints of the API.
 
 ### Upload
 
+This endpoint allows the logged-in user to upload a CSV file that contains the information as shown in the 'example-data.csv' file located at the root of the project.
+
 ```
 http://takenos-challenge.onrender.com/api/upload
 ```
-
+If the file is processed successfully, the logged-in user will receive an email indicating that the upload was successful. The same applies if an error occurs during the CSV upload; the user will receive an email indicating the same.
 
 ### Data
+
+**Total volume**: This is an endpoint that returns the total volume of transactions separated by day, week, and month. It is configurable through query parameters, where you must specify a 'period': 'day', 'week', or 'month'.
 ```
 http://takenos-challenge.onrender.com/api/transactions/total-volume
 ```
 
+**Fraudulent**: This is an endpoint that returns all suspicious transactions, which are determined by an excessive amount value. This value is configurable through its own environment variable. FRAUD_AMOUNT_THRESHOLD
 ```
 http://takenos-challenge.onrender.com/api/transactions/fraudulent
 ```
 
+**Top Merchants**: This is an endpoint that returns the top 10 merchants with the highest transaction volume of all time.
 ```
 http://takenos-challenge.onrender.com/api/transactions/top-merchants
 ```

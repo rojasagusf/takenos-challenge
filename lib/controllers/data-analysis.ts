@@ -5,7 +5,7 @@ import logger from '../logger';
 import countTransactions from '../utils/transaction-helper';
 import { Op } from 'sequelize';
 const VALID_QUERY_PERIODS = ['day', 'week', 'month'];
-const FRAUD_AMOUNT_THRESHOLD = 100000;
+const FRAUD_AMOUNT_THRESHOLD = process.env.FRAUD_AMOUNT_THRESHOLD;
 
 export async function getTopMerchants(_req: Request, res: Response) {
   try {
