@@ -7,7 +7,7 @@ Deploy URL: https://takenos-challenge.onrender.com
 
 ## Endpoints
 
-In the root of the repository, there is a file called 'routes-documentations.json' in which all the routes are rendered with their different options.
+In the root of the repository, there is a file called 'routes-documentations.json' in which all the routes are rendered with their different options. To open this file, I recommend using software such as Postman or Hoppscotch.
 
 ### Register
 ```
