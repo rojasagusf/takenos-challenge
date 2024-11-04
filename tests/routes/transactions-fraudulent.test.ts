@@ -27,42 +27,42 @@ describe('POST /api/transactions/fraudulent', () => {
       .then(() => {
         return Promise.all([
           Transaction.create({
-            id: 1,
+            transaction_id: 1,
             date: now,
             amount: 500,
             merchant: 'Merchant 1',
             userId: '1'
           }),
           Transaction.create({
-            id: 2,
+            transaction_id: 2,
             date: now,
             amount: 600,
             merchant: 'Merchant 2',
             userId: '2'
           }),
           Transaction.create({
-            id: 5,
+            transaction_id: 5,
             date: now,
             amount: 100001,
             merchant: 'HighValue Merchant',
             userId: '2'
           }),
           Transaction.create({
-            id: 16,
+            transaction_id: 16,
             date: now,
             amount: 200100,
             merchant: 'HighValue Merchant2',
             userId: '2'
           }),
           Transaction.create({
-            id: 6,
+            transaction_id: 6,
             date: now,
             amount: 300,
             merchant: 'Rapid Merchant',
             userId: '1'
           }),
           Transaction.create({
-            id: 7,
+            transaction_id: 7,
             date: now,
             amount: 350,
             merchant: 'Rapid Merchant',
@@ -100,13 +100,13 @@ describe('POST /api/transactions/fraudulent', () => {
         response.body.highValueTransactions.should.have.lengthOf(2);
         response.body.highValueTransactions.should.containDeep([
           {
-            id: 5,
+            transaction_id: 5,
             amount: 100001,
             merchant: 'HighValue Merchant',
             userId: 2
           },
           {
-            id: 16,
+            transaction_id: 16,
             amount: 200100,
             merchant: 'HighValue Merchant2',
             userId: 2

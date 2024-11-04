@@ -1,5 +1,26 @@
 # Takenos Challenge
 
+## Run project
+- Install dependencies
+```
+npm install
+```
+
+then, execute a build command:
+```
+npm build
+```
+
+- Run with typescript
+```
+npm start
+```
+
+- Run builded mode
+```
+npm run builded-start
+```
+
 ### Run tests with docker
 
 ```

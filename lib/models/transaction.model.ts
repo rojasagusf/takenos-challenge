@@ -13,7 +13,7 @@ export default class Transaction extends Model {
     primaryKey: true,
     autoIncrement: true,
   })
-    id!: number;
+    transaction_id!: number;
 
   @Column({
     type: DataType.DATEONLY,

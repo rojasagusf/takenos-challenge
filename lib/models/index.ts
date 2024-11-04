@@ -1,5 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
 import logger from '../../lib/logger';
+import Transaction from './transaction.model';
+import User from './user.model';
 const NODE_ENV = process.env.NODE_ENV || 'production';
 
 const CONN_MAX_ATTEMPTS = 5;
@@ -13,7 +15,7 @@ export const sequelize = new Sequelize({
   host: process.env.POSTGRESQL_HOST,
   dialect: 'postgres',
   omitNull: true,
-  models: [__dirname + '/**/*.model.js'],
+  models: [Transaction, User],
   logging: false
 });
 
@@ -48,7 +50,7 @@ async function initializeDb() {
     logger.info('Database connection established');
 
     if (['testing', 'development'].includes(NODE_ENV)) {
-      await sequelize.sync({ alter: true });
+      await sequelize.sync({ force: true });
       logger.info('Database synchronized');
     }
   } catch (error) {
